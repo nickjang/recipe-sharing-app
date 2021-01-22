@@ -1,0 +1,35 @@
+.account-input {
+  border: 0;
+}
+
+.main-input {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--note-font);
+  text-align: right;
+}
+
+.main-input input {
+  border: 1px solid var(--color-black);
+}
+
+.account-input .input-label {
+  margin: auto 4px auto 0px;
+}
+
+.account-input .hint {
+  margin-left: 4px;
+}
+
+.account-input .validation-error {
+  display: block;
+  margin: auto;
+  max-width: fit-content;
+}
+
+@media all and (min-width: 345px) {
+  .main-input {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

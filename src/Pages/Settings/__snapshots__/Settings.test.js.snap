@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Settings component renders Settings by default 1`] = `
+<article
+  className="account-form settings"
+>
+  <h2
+    className="lg-title"
+  >
+    Settings
+  </h2>
+  <section>
+    <h3
+      className="lg-title"
+    >
+      Account Settings
+    </h3>
+    <output
+      className="form-status "
+      form="account-settings-form"
+    >
+       
+      
+      
+    </output>
+    <form
+      id="account-settings-form"
+    >
+      <AccountInput
+        form="account-settings-form"
+        hint={
+          <sup>
+            *
+          </sup>
+        }
+        id="email"
+        inputRef={null}
+        touched={false}
+        type="email"
+        update={[Function]}
+        validate={[Function]}
+      />
+      <AccountInput
+        form="account-settings-form"
+        hint={
+          <sup>
+            *
+          </sup>
+        }
+        id="password"
+        inputRef={null}
+        touched={false}
+        type="password"
+        update={[Function]}
+        validate={[Function]}
+      />
+      <AccountInput
+        form="account-settings-form"
+        hint=""
+        id="new-email"
+        inputRef={null}
+        touched={false}
+        type="email"
+        update={[Function]}
+        validate={[Function]}
+      />
+      <AccountInput
+        form="account-settings-form"
+        hint=""
+        id="new-password"
+        inputRef={null}
+        touched={false}
+        type="password"
+        update={[Function]}
+        validate={[Function]}
+      />
+      <button
+        className="lg-btn lg-btn-success mt-1 mr-1"
+        disabled="Email cannot be empty."
+        form="account-settings-form"
+        onClick={[Function]}
+        type="submit"
+      >
+         Submit
+      </button>
+      <button
+        className="lg-btn lg-btn-reset"
+        disabled="Email cannot be empty."
+        form="account-settings-form"
+        onClick={[Function]}
+        type="reset"
+      >
+         Delete Account
+      </button>
+    </form>
+  </section>
+</article>
+`;

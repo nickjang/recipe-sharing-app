@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp component renders SignUp by default 1`] = `
+<withRouter(SignUpForm)
+  onSuccess={[Function]}
+/>
+`;

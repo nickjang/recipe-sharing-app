@@ -1,0 +1,21 @@
+.start h2 {
+  text-align: center;
+}
+
+.start {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 30rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.start p {
+  font-family: var(--note-font);
+}
+
+.start span {
+  display: block;
+}

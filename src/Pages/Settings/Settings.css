@@ -1,0 +1,8 @@
+.settings output {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.settings input {
+  border: 1px solid #d3d3d3;
+}

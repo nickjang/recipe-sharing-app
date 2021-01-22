@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Do+Hyeon&family=Abel&display=swap");
+
+:root {
+  --color-black: black;
+  --color-white: white;
+  --title-font: "Lora", serif;
+  --timestamp-font: "Abel", sans-serif;
+  --body-font: "Lora", serif;
+  --action-font: "Abel", sans-serif;
+  --note-font: "Abel", sans-serif;
+  --button-drop-shadow: 4px 4px 8px -3px rgba(0, 0, 0, 0.2),
+    3px 3px 2px -2px rgba(0, 0, 0, 0.15);
+}
+
+.group-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.group-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.lg-title {
+  color: rgb(2, 52, 110);
+  font-family: var(--title-font);
+  font-size: 2rem;
+}
+
+.lg-project-title {
+  color: var(--color-black);
+  font-family: var(--title-font);
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+input,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select {
+  -webkit-appearance: menulist;
+  -moz-appearance: menulist;
+}
+
+input:focus {
+  border: 1px solid var(--color-black);
+}
+
+.lg-card {
+  background: var(--color-white);
+  border: 1px solid lightgray;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+}
+
+.form {
+  width: fit-content;
+  text-align: center;
+  max-width: fit-content;
+  margin: 2rem auto auto auto;
+}
+
+.form h3 {
+  font-size: 1.5rem;
+}
+
+.lg-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-family: "Abel", sans-serif;
+}
+
+.lg-btn-light {
+  border: 1px solid var(--color-black);
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.lg-btn-light:disabled {
+  border-color: gray;
+  color: gray;
+}
+
+.lg-btn-light:hover:enabled {
+  box-shadow: var(--button-drop-shadow);
+}
+
+.lg-btn-success {
+  background: green;
+  color: var(--color-white);
+}
+
+.lg-btn-success:disabled {
+  background: rgb(117, 143, 117);
+}
+
+.lg-btn-success:hover:enabled {
+  box-shadow: var(--button-drop-shadow);
+}
+
+.lg-btn-reset {
+  background: red;
+}
+
+.lg-btn-reset:disabled {
+  color: var(--color-white);
+  background: rgb(153, 119, 119);
+}
+
+.lg-btn-reset:hover:enabled {
+  box-shadow: var(--button-drop-shadow);
+}
+
+.form-status,
+.note,
+.hint,
+.status,
+.validation-error {
+  font-family: var(--note-font);
+}
+
+.success-status {
+  color: green;
+}
+
+.fail-status,
+.hint {
+  color: red;
+}
+
+.lg-text-left {
+  text-align: left;
+}
+
+.lg-text-right {
+  text-align: right;
+}
+
+.m-1 {
+  margin: 1rem;
+}
+
+.m-2 {
+  margin: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  border: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: lightgray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders Header by default 1`] = `
+<header>
+  <h1>
+    <Link
+      to="/overview"
+    >
+      Logger
+    </Link>
+  </h1>
+  <nav>
+    <ul>
+      <div
+        className="right-link-container"
+      >
+        <li>
+          <NavLink
+            to="/sign-up"
+          >
+            Sign up
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/login"
+          >
+            Log in
+          </NavLink>
+        </li>
+      </div>
+    </ul>
+  </nav>
+</header>
+`;

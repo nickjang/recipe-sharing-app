@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm component renders SignUpForm by default 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
