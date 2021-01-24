@@ -1,27 +1,26 @@
-.account-input {
+.recipe-input {
   border: 0;
+  font-family: var(--note-font);
 }
 
 .main-input {
   display: flex;
   flex-direction: column;
-  font-family: var(--note-font);
-  text-align: right;
 }
 
-.main-input input {
+.recipe-input input {
   border: 1px solid var(--color-black);
 }
 
-.account-input .input-label {
+.recipe-input .input-label {
   margin: auto 4px auto 0px;
 }
 
-.account-input .hint {
+.recipe-input .hint {
   margin-left: 4px;
 }
 
-.account-input .validation-error {
+.recipe-input .validation-error {
   display: block;
   margin: auto;
   max-width: fit-content;

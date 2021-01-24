@@ -6,6 +6,11 @@ import Header from '../Components/Header/Header';
 import About from '../Pages/About/About';
 import SignUp from '../Pages/SignUp/SignUp';
 import Login from '../Pages/Login/Login';
+import Recipes from '../Pages/Recipes/Recipes'
+import Recipe from '../Pages/Recipe/Recipe';
+import AddRecipe from '../Pages/AddRecipe/AddRecipe';
+import EditRecipe from '../Pages/EditRecipe/EditRecipe';
+import UserRecipes from '../Pages/UserRecipes/UserRecipes';
 import Settings from '../Pages/Settings/Settings';
 import NotFoundPage from '../Pages/NotFoundPage/NotFoundPage';
 import TokenService from '../services/token-service';
@@ -85,14 +90,14 @@ class App extends Component {
         <main className='App' >
           {this.state.hasError && <p className='status'>There was an error! Oh no!</p>}
           <Switch>
-            <PublicRoute exact path='/' component={Recipes} />
-            <PublicOnlyRoute path='/about' component={About} />
+            <Route exact path='/' component={Recipes} />
+            <Route path='/about' component={About} />
+            <Route path='/recipes/:recipeId' component={Recipe} />
             <PublicOnlyRoute path='/sign-up' component={SignUp} />
             <PublicOnlyRoute path='/login' component={Login} />
-            <PublicRoute path='/recipe' component={Recipe} />
-            <PrivateRoute path='/add-recipe' component={AddRecipe} />
-            <PrivateRoute path='/edit-recipe' component={EditRecipe} />
-            <PrivateRoute path='/my-recipes' component={UserRecipes} />
+            <PrivateRoute path='/recipes/add' component={AddRecipe} />
+            <PrivateRoute path='/recipes/:recipeId/edit' component={EditRecipe} />
+            <PrivateRoute path='/user/:userId/recipes' component={UserRecipes} />
             <PrivateRoute path='/settings' component={Settings} />
             <Route component={NotFoundPage} />
           </Switch>

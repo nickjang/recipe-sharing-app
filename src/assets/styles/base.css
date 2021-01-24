@@ -171,6 +171,10 @@ input:focus {
   margin-left: 1rem;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 ::-webkit-scrollbar {
   width: 7px;
   border: 15px;

@@ -25,10 +25,10 @@ class Header extends Component {
                 <NavLink to='/about'>About</NavLink>
               </li>
               <li>
-                <NavLink to='/add-recipe'>Add Recipe</NavLink>
+                <NavLink to='/recipes/add'>Add Recipe</NavLink>
               </li>
               <li>
-                <NavLink to='/my-recipes'>My Recipes</NavLink>
+                <NavLink to={`/user/${}/recipes`}>My Recipes</NavLink> ///////////////////////////////////////////////
               </li>
               <li>
                 <NavLink onClick={this.handleLogoutClick} to='/'>Logout</NavLink>

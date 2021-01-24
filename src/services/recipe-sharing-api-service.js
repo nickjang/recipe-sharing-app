@@ -1,13 +1,10 @@
 import TokenService from './token-service';
 import config from '../config';
 
-const LoggingApiService = {
-  getProjects() {
-    return fetch(`${config.API_ENDPOINT}/projects`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
+const RecipeSharingApiService = {
+  getMoreRecipes(limit, userId = null) {
+    const queryString = `?limit=${limit}` + (userId && `&userId=${userId}`);
+    return fetch(`${config.API_ENDPOINT}/recipes${queryString}`)
       .then(res =>
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
@@ -149,9 +146,9 @@ const LoggingApiService = {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         ids,
-        minutes ,
+        minutes,
         seconds
       }),
     })
@@ -163,4 +160,4 @@ const LoggingApiService = {
   }
 }
 
-export default LoggingApiService
+export default RecipeSharingApiService
