@@ -40,7 +40,7 @@ exports[`About component renders About by default 1`] = `
   <p
     className="note"
   >
-    You can view recipes by clicking Recipe Sharing at the top, which is available to both visitors and users.
+    You can view recipes by clicking 'Recipe Sharing' at the top, which is available to both visitors and users.
   </p>
   <div>
     <button

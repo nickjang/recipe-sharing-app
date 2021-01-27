@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Parallax } from 'react-parallax';
+import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
+import cupcakesImg from '../../assets/images/cupcakes.jpg';
+
 import './UserRecipes.css';
 
 class UserRecipes extends Component {
@@ -101,8 +103,8 @@ class UserRecipes extends Component {
       <>
         <Parallax
           blur={0}
-          bgImage={'https://preppykitchen.com/wp-content/uploads/2019/06/Ultimate-Chocolate-Cake-feature-1200.jpg'}
-          bgImageAlt="the cat"
+          bgImage={cupcakesImg}
+          bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
           strength={200}
         >
           <h2 className='rs-title author-name'>{author}</h2>

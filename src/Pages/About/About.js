@@ -61,9 +61,9 @@ class About extends Component {
             <p className='note'>You'll need to create an account to add, edit, or delete a recipe and access a list of your recipes.</p>
             <p className='note'>
               With the demo account, you won't able to do these things, but you can see what it's like to have an
-              account and view differences in options available.
+              account and view differences in features available.
             </p>
-            <p className='note'>You can view recipes by clicking Recipe Sharing at the top, which is available to both visitors and users.</p>
+            <p className='note'>You can view recipes by clicking 'Recipe Sharing' at the top, which is available to both visitors and users.</p>
             <div>
               <button
                 className='rs-btn rs-btn-light mt-2 mr-1'

@@ -4,8 +4,8 @@ exports[`UserRecipes component renders UserRecipes by default 1`] = `
 <Fragment>
   <Parallax
     bgClassName="react-parallax-bgimage"
-    bgImage="https://preppykitchen.com/wp-content/uploads/2019/06/Ultimate-Chocolate-Cake-feature-1200.jpg"
-    bgImageAlt="the cat"
+    bgImage="cupcakes.jpg"
+    bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
     blur={0}
     className=""
     contentClassName=""

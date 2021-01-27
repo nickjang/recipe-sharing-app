@@ -3,6 +3,7 @@
   font-family: var(--note-font);
   width: 95%;
   height: 10rem;
+  font-size: 1rem;
 }
 
 .recipe-list {

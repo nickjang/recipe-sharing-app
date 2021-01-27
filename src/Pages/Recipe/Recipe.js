@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Parallax } from 'react-parallax';
 import UserService from '../../services/user-service';
 import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
+import cupcakesImg from '../../assets/images/cupcakes.jpg';
 import './Recipe.css';
 
 class Recipe extends Component {
@@ -39,8 +40,8 @@ class Recipe extends Component {
       <article className='recipe-page mb-2'>
         <Parallax
           blur={0}
-          bgImage={'https://preppykitchen.com/wp-content/uploads/2019/06/Ultimate-Chocolate-Cake-feature-1200.jpg'}
-          bgImageAlt="the cat"
+          bgImage={cupcakesImg}
+          bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
           strength={200}
         >
           <div className='recipe-name'>

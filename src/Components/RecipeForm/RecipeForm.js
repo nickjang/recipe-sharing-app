@@ -83,7 +83,11 @@ class RecipeForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, information, ingredients, instructions } = this.state;
+    let { name, information, ingredients, instructions } = this.state;
+    // filter out entries with empty values
+    ingredients = ingredients.filter(({ measurement, ingredient }) => measurement && ingredient);
+    instructions = instructions.filter((instructions) => instructions);
+
     const inputs = [name.value, information, ingredients, instructions];
     const func = this.props.form === 'add-recipe-form'
       ? () => RecipeSharingApiService.postRecipe(...inputs)
