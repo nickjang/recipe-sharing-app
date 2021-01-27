@@ -16,7 +16,6 @@ class SignUp extends Component {
 }
 
 SignUp.defaultProps = {
-  location: {},
   history: {
     push: () => { }
   }

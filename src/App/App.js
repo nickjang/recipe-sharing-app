@@ -92,12 +92,12 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Recipes} />
             <Route path='/about' component={About} />
+            <PrivateRoute path='/recipes/add' component={AddRecipe} />
+            <PrivateRoute path='/recipes/:recipeId/edit' component={EditRecipe} />
             <Route path='/recipes/:recipeId' component={Recipe} />
             <PublicOnlyRoute path='/sign-up' component={SignUp} />
             <PublicOnlyRoute path='/login' component={Login} />
-            <PrivateRoute path='/recipes/add' component={AddRecipe} />
-            <PrivateRoute path='/recipes/:recipeId/edit' component={EditRecipe} />
-            <PrivateRoute path='/user/:userId/recipes' component={UserRecipes} />
+            <PrivateRoute path='/users/:userId/recipes' component={UserRecipes} />
             <PrivateRoute path='/settings' component={Settings} />
             <Route component={NotFoundPage} />
           </Switch>

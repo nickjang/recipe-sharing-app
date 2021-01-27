@@ -5,13 +5,13 @@ exports[`Settings component renders Settings by default 1`] = `
   className="account-form settings"
 >
   <h2
-    className="lg-title"
+    className="rs-title"
   >
     Settings
   </h2>
   <section>
     <h3
-      className="lg-title"
+      className="rs-title"
     >
       Account Settings
     </h3>
@@ -75,7 +75,7 @@ exports[`Settings component renders Settings by default 1`] = `
         validate={[Function]}
       />
       <button
-        className="lg-btn lg-btn-success mt-1 mr-1"
+        className="rs-btn rs-btn-success mt-1 mr-1"
         disabled="Email cannot be empty."
         form="account-settings-form"
         onClick={[Function]}
@@ -84,7 +84,7 @@ exports[`Settings component renders Settings by default 1`] = `
          Submit
       </button>
       <button
-        className="lg-btn lg-btn-reset"
+        className="rs-btn rs-btn-reset"
         disabled="Email cannot be empty."
         form="account-settings-form"
         onClick={[Function]}

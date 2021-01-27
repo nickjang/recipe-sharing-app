@@ -5,37 +5,42 @@ import './RecipeInput.css';
 
 class RecipeInput extends Component {
   render() {
-    const validationError = this.props.touched && <ValidationError id={this.props.id + '-error-message'} errorFor={this.props.id} message={this.props.validate()} />;
+    const { form, id, label, value, touched,
+      inputRef, ariaLabel, validate, update } = this.props;
+    const validationError = (touched &&
+      <ValidationError id={id + '-error-message'} errorFor={id} message={validate()} />);
 
-    if (this.props.label) {
+    if (label) {
       return (
-        <fieldset className='recipe-input' form={this.props.form} name={this.props.id}>
+        <fieldset className='recipe-input' form={form} name={id}>
           <div className='main-input'>
-            {this.props.label}
+            {label}
             <input
               type='text'
-              id={this.props.id}
-              name={this.props.id}
-              ref={this.props.inputRef || null}
-              aria-describedby={this.props.id + '-error-message'}
-              aria-invalid={!!this.props.validate()}
-              onChange={(e) => this.props.update(e.target.value)} />
+              id={id}
+              value={value}
+              name={id}
+              ref={inputRef || null}
+              aria-describedby={id + '-error-message'}
+              aria-invalid={!!validate()}
+              onChange={(e) => update(e.target.value)} />
           </div>
           {validationError}
         </fieldset>
       );
-    } else if (this.props.ariaLabel) {
+    } else if (ariaLabel) {
       return (
-        <li className='recipe-input' form={this.props.form} name={this.props.id}>
+        <li className='recipe-input' form={form} name={id}>
           <input
             type='text'
-            id={this.props.id}
-            name={this.props.id}
-            ref={this.props.inputRef || null}
-            aria-label={this.props.ariaLabel}
-            aria-describedby={this.props.id + '-error-message'}
-            aria-invalid={!!this.props.validate()}
-            onChange={(e) => this.props.update(e.target.value)} />
+            id={id}
+            name={id}
+            value={value}
+            ref={inputRef || null}
+            aria-label={ariaLabel}
+            aria-describedby={id + '-error-message'}
+            aria-invalid={!!validate()}
+            onChange={(e) => update(e.target.value)} />
           {validationError}
         </li>
       );
@@ -46,6 +51,7 @@ class RecipeInput extends Component {
 RecipeInput.defaultProps = {
   form: '',
   id: '',
+  value: '',
   touched: false,
   validate: () => { },
   update: () => { },
@@ -57,6 +63,7 @@ RecipeInput.defaultProps = {
 RecipeInput.propTypes = {
   form: PropTypes.string.isRequired,
   id: PropTypes.string,
+  value: PropTypes.string,
   touched: PropTypes.bool,
   validate: PropTypes.func,
   update: PropTypes.func.isRequired,

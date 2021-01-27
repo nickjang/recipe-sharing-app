@@ -5,7 +5,7 @@ exports[`Start component renders Start by default 1`] = `
   className="start"
 >
   <h2
-    className="lg-title"
+    className="rs-title"
   >
     Create an account, or use the demo account.
   </h2>
@@ -20,13 +20,13 @@ exports[`Start component renders Start by default 1`] = `
   />
   <div>
     <button
-      className="lg-btn lg-btn-light mt-2 mr-1"
+      className="rs-btn rs-btn-light mt-2 mr-1"
       onClick={[Function]}
     >
        Sign Up
     </button>
     <button
-      className="lg-btn lg-btn-light mt-2"
+      className="rs-btn rs-btn-light mt-2"
       onClick={[Function]}
     >
        Demo

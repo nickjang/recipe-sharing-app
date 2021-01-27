@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
+import UserService from '../../services/user-service';
 import './About.css';
 
 class About extends Component {
@@ -8,8 +9,6 @@ class About extends Component {
     loading: false,
     error: ''
   }
-
-  static contextType = TokenService;
 
   handleSignUpClick = (e) => {
     e.preventDefault();
@@ -25,10 +24,11 @@ class About extends Component {
       email: 'demo@demo.com',
       password: 'Demo!123'
     })
-      .then(res => {
+      .then(({ id }) => {
         this.setState(
           { loading: false },
           () => {
+            UserService.saveUserId(id);
             const { location, history } = this.props;
             const destination = (location.state || {}).from || '/';
             history.push(destination);
@@ -45,32 +45,47 @@ class About extends Component {
     const hasToken = TokenService.hasAuthToken();
     return (
       <section className='about'>
-        <h2 className='lg-title'>Welcome to the logging app!</h2>
+        <h2 className='rs-title'>Welcome to the recipe sharing app!</h2>
         <span className={`status ${this.state.error ? 'fail-status' : ''}`}>
           {this.state.error || (this.state.loading && 'Loading...')}
         </span>
-        <p>Recipe Sharing about</p>
-        {!hasToken &&
+        <p className='note'>You can view recipes added by other users, or add and view your own recipes.</p>
+        <p className='note'>Go to 'Add Recipe' to add a recipe with a name, information, ingredients, and instructions.</p>
+        <p className='note'>
+          Go to 'My Recipes' to view your recipes. If you click on the name of your recipe, you'll be led to your recipe's page. You'll
+          see a button to edit the recipe if you are the author. When you're on the editting page you can update or delete your recipe.
+        </p>
+        {
+          !hasToken &&
           <>
-            <p>You'll need to create an account or use the demo account (a shared account) to start making logs.</p>
-            <p>With your own account you can create projects to store logs in. With the demo account, you won't be
-                able to make new projects or update account settings, but you can use the rest of the features.</p>
-            <p>You can view recipes by clicking Recipe Sharing at the top.</p>
+            <p className='note'>You'll need to create an account to add, edit, or delete a recipe and access a list of your recipes.</p>
+            <p className='note'>
+              With the demo account, you won't able to do these things, but you can see what it's like to have an
+              account and view differences in options available.
+            </p>
+            <p className='note'>You can view recipes by clicking Recipe Sharing at the top, which is available to both visitors and users.</p>
             <div>
               <button
-                className='lg-btn lg-btn-light mt-2 mr-1'
+                className='rs-btn rs-btn-light mt-2 mr-1'
                 onClick={(e) => { this.handleSignUpClick(e) }}
               > Sign Up
                 </button>
               <button
-                className='lg-btn lg-btn-light mt-2'
+                className='rs-btn rs-btn-light mt-2'
                 onClick={(e) => { this.handleDemoClick(e) }}
               > Demo
                 </button>
             </div>
-          </>}
-      </section>
+          </>
+        }
+      </section >
     );
+  }
+}
+
+About.defaultProps = {
+  history: {
+    push: () => { }
   }
 }
 

@@ -140,9 +140,9 @@ class Settings extends Component {
     );
     return (
       <article className='form settings'>
-        <h2 className='lg-title'>Settings</h2>
+        <h2 className='rs-title'>Settings</h2>
         <section>
-          <h3 className='lg-title'>Account Settings</h3>
+          <h3 className='rs-title'>Account Settings</h3>
           <output
             form='account-settings-form'
             className={`form-status ${this.state.error ? 'fail-status' : ''}`}
@@ -181,7 +181,7 @@ class Settings extends Component {
               validate={() => this.validatePassword(false)}
               update={this.updateNewPassword} />
             <button
-              className='lg-btn lg-btn-success mt-1 mr-1'
+              className='rs-btn rs-btn-success mt-1 mr-1'
               type='submit'
               form='account-settings-form'
               onClick={(e) => { this.handleSubmit(e) }}
@@ -191,7 +191,7 @@ class Settings extends Component {
             > Submit
             </button>
             <button
-              className='lg-btn lg-btn-reset'
+              className='rs-btn rs-btn-reset'
               type='reset'
               form='account-settings-form'
               onClick={(e) => { this.handleDeleteAccount(e) }}

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import LoginForm from '../../Components/LoginForm/LoginForm';
+import UserService from '../../services/user-service';
 import './Login.css';
 
 class Login extends Component {
-  handleLoginSuccess = () => {
+  handleLoginSuccess = (userId) => {
+    UserService.saveUserId(userId);
     const { location, history } = this.props;
     const destination = (location.state || {}).from || '/';
     history.push(destination);

@@ -1,6 +1,7 @@
 header,
 header ul,
-header .right-link-container {
+header .right-link-container,
+header ul .inner-group {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,11 +32,15 @@ header nav {
 }
 
 header ul {
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: 100%;
   list-style-type: none;
   margin: 0.4rem 0 0.4rem 0;
   padding: 0;
+}
+
+header ul .inner-group {
+  flex-direction: column;
 }
 
 header li a {
@@ -55,9 +60,34 @@ header .right-link-container {
   justify-content: flex-end;
 }
 
-@media all and (min-width: 445px) {
+@media all and (min-width: 280px) {
+  header ul {
+    flex-direction: column;
+  }
+
+  header ul .inner-group {
+    flex-direction: row;
+  }
+}
+
+@media all and (min-width: 375px) {
+  header ul {
+    flex-direction: row;
+  }
+  
+  header ul .inner-group {
+    flex-direction: row;
+  }
+}
+
+@media all and (min-width: 590px) {
   header {
     flex-direction: row;
+  }
+
+  header ul {
+    flex-direction: row;
+    width: fit-content;
   }
 
   header nav {
@@ -66,11 +96,5 @@ header .right-link-container {
 
   header h1 {
     margin: 0.75rem 0 0.75rem 1rem;
-  }
-}
-
-@media all and (min-width: 280px) {
-  header ul {
-    flex-direction: row;
   }
 }

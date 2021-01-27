@@ -76,7 +76,7 @@ class SignUpForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({ error: null })
+    this.setState({ error: null, loading: true })
     AuthApiService.postUser({
       email: this.state.email.value,
       password: this.state.password.value,
@@ -100,11 +100,12 @@ class SignUpForm extends Component {
           nickname: {
             value: '',
             touched: false
-          }
-        }, this.props.onSuccess())
+          },
+          loading: false
+        }, () => this.props.onSuccess())
       })
-      .catch(res => {
-        this.setState({ error: res.error })
+      .catch(({error}) => {
+        this.setState({ error, loading: false })
       })
   }
 
@@ -117,8 +118,8 @@ class SignUpForm extends Component {
     const form = 'sign-up-form';
     return (
       <article className='form'>
-        <h2 className='lg-title'>Welcome!</h2>
-        <h3 className='lg-title'>{title}</h3>
+        <h2 className='rs-title'>Welcome!</h2>
+        <h3 className='rs-title'>{title}</h3>
         <output
           form={form}
           className={`form-status ${this.state.error ? 'fail-status' : ''}`}
@@ -158,7 +159,7 @@ class SignUpForm extends Component {
             update={this.updatePassword}
             hint={<sup>*</sup>} />
           <button
-            className='lg-btn lg-btn-light mt-1'
+            className='rs-btn rs-btn-light mt-1'
             type='submit'
             form={form}
             onClick={(e) => { this.handleSubmit(e) }}

@@ -46,12 +46,14 @@ class LoginForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({ error: '' })
+    this.setState({ error: '', loading: true })
     AuthApiService.postLogin({
       email: this.state.email.value,
       password: this.state.password.value,
     })
-      .then(res => {
+      .then(({ id }) => {
+        if (id == null) 
+          return this.setState({error: 'Did not get back user ID'});
         this.setState(
           {
             email: {
@@ -61,13 +63,14 @@ class LoginForm extends Component {
             password: {
               value: '',
               touched: false
-            }
+            },
+            loading: false
           },
-          () => this.props.onSuccess()
+          () => this.props.onSuccess(id)
         );
       })
       .catch(res => {
-        this.setState({ error: res.error })
+        this.setState({ error: res.error, loading: false })
       })
   }
 
@@ -80,7 +83,7 @@ class LoginForm extends Component {
     const form = 'login-form';
     return (
       <article className='form'>
-        <h2 className='lg-title'>{title}</h2>
+        <h2 className='rs-title'>{title}</h2>
         <output
           form={form}
           className={`form-status ${this.state.error ? 'fail-status' : ''}`}
@@ -105,7 +108,7 @@ class LoginForm extends Component {
             update={this.updatePassword}
             hint={<sup>*</sup>} />
           <button
-            className='lg-btn lg-btn-light mt-1'
+            className='rs-btn rs-btn-light mt-1'
             type='submit'
             form={form}
             onClick={(e) => { this.handleSubmit(e) }}

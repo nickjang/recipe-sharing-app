@@ -2,8 +2,9 @@ import TokenService from './token-service';
 import config from '../config';
 
 const RecipeSharingApiService = {
-  getMoreRecipes(limit, userId = null) {
-    const queryString = `?limit=${limit}` + (userId && `&userId=${userId}`);
+  getMoreRecipes(limit, offset, userId = null) {
+    let queryString = `?limit=${limit}&offset=${offset}`;
+    if (userId) queryString += `&userId=${userId}`;
     return fetch(`${config.API_ENDPOINT}/recipes${queryString}`)
       .then(res =>
         (!res.ok)
@@ -11,92 +12,32 @@ const RecipeSharingApiService = {
           : res.json()
       )
   },
-  getProject(projectId) {
-    return fetch(`${config.API_ENDPOINT}/projects/${projectId}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
+  getRecipe(recipeId) {
+    return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}`)
       .then(res =>
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
   },
-  getProjectLogs(projectId) {
-    return fetch(`${config.API_ENDPOINT}/projects/${projectId}/logs`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-    })
+  getAuthor(userId) {
+    return fetch(`${config.API_ENDPOINT}/users/${userId}`)
       .then(res =>
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
   },
-  getCurrentDayLogs() {
-    let start = new Date();
-    start.setHours(0, 0, 0, 0);
+  postRecipe(name, information, ingredients, instructions) {
+    const recipe = { name, information, ingredients, instructions };
 
-    let end = new Date(start);
-    end.setDate(end.getDate() + 1);
-
-    start = start.toISOString();
-    end = end.toISOString();
-
-    const params = `?filter=range&start=${start}&end=${end}`;
-
-    return fetch(`${config.API_ENDPOINT}/logs${params}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      }
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  // get ranges of days with logs for each project
-  getDayRanges() {
-    let params = '?part=day-ranges&time_zone='
-      + Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    return fetch(`${config.API_ENDPOINT}/projects${params}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      }
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  getLogsBySelectors(selectorsByProject) {
-    let params = '?filter=projects-and-ranges&selectors=' + JSON.stringify(selectorsByProject);
-
-    return fetch(`${config.API_ENDPOINT}/logs${params}`, {
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      }
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  postProject(title) {
-    const data = { title };
-    return fetch(`${config.API_ENDPOINT}/projects`, {
+    return fetch(`${config.API_ENDPOINT}/recipes`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(recipe),
     })
       .then(res =>
         (!res.ok)
@@ -104,34 +45,16 @@ const RecipeSharingApiService = {
           : res.json()
       )
   },
-  postProjectLog(projectId) {
-    return fetch(`${config.API_ENDPOINT}/logs`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify({
-        start_time: (new Date()).toISOString(),
-        project_id: projectId
-      }),
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
-  },
-  endProjectLog(logId) {
-    return fetch(`${config.API_ENDPOINT}/logs/${logId}?part=end-time`, {
+  updateRecipe(recipeId, name, information, ingredients, instructions) {
+    const recipe = { name, information, ingredients, instructions };
+
+    return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({
-        end_time: (new Date()).toISOString()
-      }),
+      body: JSON.stringify(recipe),
     })
       .then(res =>
         (!res.ok)
@@ -139,24 +62,19 @@ const RecipeSharingApiService = {
           : res.json()
       )
   },
-  updateLogsWithFormat(ids, minutes, seconds) {
-    return fetch(`${config.API_ENDPOINT}/logs?filter=ids&part=format`, {
-      method: 'PATCH',
+  deleteRecipe(recipeId) {
+    return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}`, {
+      method: 'DELETE',
       headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      },
-      body: JSON.stringify({
-        ids,
-        minutes,
-        seconds
-      }),
+        'authorization': `Bearer ${TokenService.getAuthToken()}`
+      }
     })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(e => Promise.reject(e));
+        }
+        return;
+      })
   }
 }
 

@@ -1,0 +1,76 @@
+.recipe-page {
+  text-align: center;
+  width: 100%;
+}
+
+.recipe-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipe-name h3 {
+  margin-top: 0;
+}
+
+.recipe-name h2,
+.recipe-name h3 {
+  color: var(--color-white);
+}
+
+.recipe-page .recipe-ingredients,
+.recipe-page .recipe-instructions,
+.recipe-page .recipe-information {
+  text-align: left;
+}
+
+.recipe-page .recipe-information,
+.recipe-page .recipe-ingredients,
+.recipe-page .recipe-instructions {
+  width: 95%;
+  word-break: break-word;
+  margin: 0rem auto;
+}
+
+.recipe-page .recipe-ingredients,
+.recipe-page .recipe-instructions {
+  margin-top: revert;
+}
+
+@media all and (min-width: 580px) {
+  .recipe-name h2 {
+    margin-left: 7rem;
+  }
+
+  .recipe-page .recipe-author {
+    text-align: left;
+  }
+
+  .recipe-name {
+    flex-direction: row;
+  }
+
+  .recipe-name h3 {
+    margin-top: revert;
+  }
+
+  .recipe-page .recipe-author {
+    margin: 3rem auto 2rem auto;
+  }
+
+  .recipe-page .recipe-author,
+  .recipe-page .recipe-information,
+  .recipe-page .recipe-ingredients,
+  .recipe-page .recipe-instructions {
+    width: 70%;
+  }
+}
+
+@media all and (min-width: 750px) {
+  .recipe-page .recipe-author,
+  .recipe-page .recipe-information,
+  .recipe-page .recipe-ingredients,
+  .recipe-page .recipe-instructions {
+    width: 50%;
+  }
+}

@@ -1,8 +1,8 @@
-.start h2 {
+.about h2 {
   text-align: center;
 }
 
-.start {
+.about {
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -12,10 +12,10 @@
   align-items: center;
 }
 
-.start p {
+.about p {
   font-family: var(--note-font);
 }
 
-.start span {
+.about span {
   display: block;
 }

@@ -1,0 +1,30 @@
+.recipe-text-area {
+  border: 1px solid var(--color-black);
+  font-family: var(--note-font);
+  width: 95%;
+  height: 10rem;
+}
+
+.recipe-list {
+  padding: 0;
+}
+
+.recipe-list li {
+  border-left: 5px solid var(--color-blue);
+  background-color: #f1f1f1;
+  list-style-type: none;
+  margin-top: 1rem;
+  padding: 10px 20px;
+}
+
+ol input {
+  width: 90%
+}
+
+.recipe-form form > fieldset:first-of-type {
+  padding: 0;
+}
+
+input#name {
+  width: 100%
+}

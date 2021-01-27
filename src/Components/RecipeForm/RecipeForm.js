@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import RecipeInput from '../RecipeInput/RecipeInput';
+import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
+import UserService from '../../services/user-service';
 import './RecipeForm.css';
 
 class RecipeForm extends Component {
   state = {
     name: {
-      value: this.props.name,
+      value: '',
       touched: false
     },
-    information: this.props.information,
-    ingredients: this.props.ingredients,
-    instructions: this.props.instructions,
-    loading: false,
+    information: '',
+    ingredients: [],
+    instructions: [],
+    loading: '',
     error: null
   }
-
-  nameRef = React.createRef();
 
   /* Update and validate functions */
 
@@ -37,7 +37,7 @@ class RecipeForm extends Component {
 
   updateIngredientName = (idx, value) => {
     const ingredients = [...this.state.ingredients];
-    ingredients[idx].name = value;
+    ingredients[idx].ingredient = value;
     this.setState({ ingredients });
   }
 
@@ -57,7 +57,7 @@ class RecipeForm extends Component {
     // if one item exists, return
     for (const item of this.state[type]) {
       if (type === 'ingredients') {
-        if (item.measurement && item.name) return false;
+        if (item.measurement && item.ingredient) return false;
       } else if (type === 'instructions') {
         if (item) return false;
       }
@@ -67,10 +67,12 @@ class RecipeForm extends Component {
 
   /* Add ingredient or instruction */
 
-  handleAddRecipeItem = (type = '') => {
+  handleAddRecipeItem = (e, type = '') => {
+    e.preventDefault();
+
     const list = [...this.state[type]];
     if (type === 'ingredients')
-      list.push({ measurement: '', name: '' });
+      list.push({ measurement: '', ingredient: '' });
     else
       list.push('');
     this.setState({ [type]: list });
@@ -79,125 +81,175 @@ class RecipeForm extends Component {
   /* Add, update, or delete recipe */
 
   handleSubmit = (e) => {
-    e.preventDefault()
-    this.setState({ error: null })
-      // api call
-      .catch(res => {
-        this.setState({ error: res.error })
+    e.preventDefault();
+
+    const { name, information, ingredients, instructions } = this.state;
+    const inputs = [name.value, information, ingredients, instructions];
+    const func = this.props.form === 'add-recipe-form'
+      ? () => RecipeSharingApiService.postRecipe(...inputs)
+      : () => RecipeSharingApiService.updateRecipe(this.props.recipeId, ...inputs);
+
+    this.setState({ error: null, loading: 'Submitting...' })
+    func()
+      .then(({ id }) => {
+        this.setState(
+          { loading: '' },
+          () => this.props.onSuccess(id)
+        )
       })
+      .catch(res => {
+        this.setState({ error: res.error, loading: '' })
+      });
   }
 
   handleDelete = (e) => {
-    e.preventDefault()
-    this.setState({ error: null })
-      // api call
-      .catch(res => {
-        this.setState({ error: res.error })
+    e.preventDefault();
+
+    this.setState({ error: null, loading: 'Deleting...' })
+    RecipeSharingApiService.deleteRecipe(this.props.recipeId)
+      .then(() => {
+        this.setState(
+          { loading: '' },
+          () => this.props.onDelete()
+        )
       })
+      .catch(res => {
+        this.setState({ error: res.error, loading: '' })
+      });
   }
 
   componentDidMount() {
-    if (this.nameRef.current) this.nameRef.current.focus();
+    const { fetchRecipe, recipeId } = this.props;
+    const userId = UserService.getUserId();
+
+    if (fetchRecipe) {
+      this.setState({ error: '', loading: 'Getting recipe...' });
+      RecipeSharingApiService.getRecipe(recipeId)
+        .then(({ name, information, ingredients, instructions, author }) => {
+          if (userId === author.id) {
+            this.setState({
+              name: {
+                value: name,
+                touched: false
+              },
+              information,
+              ingredients,
+              instructions,
+              loading: ''
+            });
+          } else {
+            this.setState({ error: 'User is not author of recipe', loading: '' });
+          }
+        })
+        .catch(({ error }) => this.setState({ error, loading: '' }));
+    }
   }
 
   render() {
     const { title, form, submitButtonText } = this.props;
-    const { error, loading, name, ingredients, instructions } = this.state;
+    const { name, information, ingredients, instructions, loading, error } = this.state;
 
     return (
-      <article className='form'>
-        <h2 className='lg-title'>{title}</h2>
+      <article className='form recipe-form'>
+        <h2 className='rs-title'>{title}</h2>
         <output
           form={form}
-          className={`form-status ${error ? 'fail-status' : ''}`}
-        > {error || (loading && 'Submitting...')}
+          className={`form-status mb-1 ${error ? 'fail-status' : ''}`}
+        > {error || loading}
         </output>
         <form action='' id={form}>
           {/* Recipe name */}
           <RecipeInput
             form={form}
             id='name'
-            ref={this.nameRef}
-            touched={name}
+            value={name.value}
+            touched={name.touched}
             validate={this.validateName}
             update={this.updateName}
-            label={<h3 className='input-label'><label htmlFor='name'>Name:</label></h3>} />
+            label={<h3 className='input-label rs-sub-title'><label htmlFor='name'>Name:</label></h3>} />
           {/* Delete recipe */
             form === 'edit-recipe-form' &&
             <button
-              className='lg-btn lg-btn-light mt-1 ml-auto'
+              className='rs-btn rs-btn-light mt-1 ml-auto'
               type='reset'
               form={form}
               onClick={(e) => { this.handleDelete(e) }}
             > Delete recipe
             </button>}
           {/* Recipe information */}
-          <h3>
+          <h3 className='rs-sub-title w-fit mr-auto'>
             <label htmlFor='information'>Information:</label>
           </h3>
-          <input
-            type='text'
+          <textarea
+            className='recipe-text-area'
             id='information'
             name='information'
+            value={information}
             onChange={(e) => this.updateInformation(e.target.value)} />
           {/* Recipe ingredients */}
-          <h3>
+          <h3 className='rs-sub-title w-fit mr-auto'>
             Ingredients:
             <span className='hint'><sup>*</sup></span>
           </h3>
-          <ul>
-            {ingredients.map(({ measurement, name }, index) => {
+          <ul className='recipe-list'>
+            {ingredients.map(({ measurement, ingredient }, index) => {
               const measureId = index + '-measurement';
-              const nameId = index + '-name';
+              const ingredientId = index + '-ingredient';
               return (
-                <li key={index + '-ingredient'}>
+                <li key={ingredientId}>
                   <RecipeInput
                     form={form}
                     id={measureId}
+                    value={measurement}
                     update={(value) => this.updateMeasurement(index, value)}
                     label={<label htmlFor={measureId} className='input-label'>Amount:</label>} />
                   <RecipeInput
                     form={form}
-                    id={nameId}
+                    id={ingredientId}
+                    value={ingredient}
                     update={(value) => this.updateIngredientName(index, value)}
-                    label={<label htmlFor={nameId} className='input-label'>Ingredient:</label>} />
+                    label={<label htmlFor={ingredientId} className='input-label'>Ingredient:</label>} />
                 </li>
               );
             })}
           </ul>
           <button
-            className='lg-btn lg-btn-light mt-1'
+            className='rs-btn rs-btn-light mt-1'
             type='submit'
             form={form}
-            onClick={(e) => { this.handleAddRecipeItem(e, 'ingredients') }}
+            onClick={(e) => this.handleAddRecipeItem(e, 'ingredients')}
           > Add ingredient
           </button>
           {/* Recipe instructions */}
-          <h3>
+          <h3 className='rs-sub-title w-fit mr-auto'>
             Instructions:
             <span className='hint'><sup>*</sup></span>
           </h3>
-          <ul>
+          <ol className='recipe-list'>
             {instructions.map((instruction, index) => {
               const id = index + '-instruction';
-              return <RecipeInput
-                key={id}
-                form={form}
-                id={id}
-                update={(value) => this.updateInstruction(index, value)}
-                ariaLabel={`Enter instruction step ${index + 1}`} />
+              return (
+                <li key={id}>
+                  <RecipeInput
+                    form={form}
+                    id={id}
+                    value={instruction}
+                    update={(value) => this.updateInstruction(index, value)}
+                    label={<label htmlFor={id} className='input-label'>{index + 1}.</label>} />
+                </li>
+              );
             })}
-          </ul>
+          </ol>
           <button
-            className='lg-btn lg-btn-light mt-1'
+            className='rs-btn rs-btn-light mt-1'
             type='submit'
             form={form}
-            onClick={(e) => { this.handleAddRecipeItem(e, 'instructions') }}
+            onClick={(e) => this.handleAddRecipeItem(e, 'instructions')}
           > Add instruction
           </button>
           {/* Submit */}
           <button
-            className='lg-btn lg-btn-light mt-1'
+            className='rs-btn rs-btn-light mt-3 ml-auto mb-1 break'
             type='submit'
             form={form}
             onClick={(e) => { this.handleSubmit(e) }}
@@ -215,24 +267,22 @@ class RecipeForm extends Component {
 
 RecipeForm.defaultProps = {
   onSuccess: () => { },
+  onDelete: () => { },
   title: 'Add Recipe',
   form: 'add-recipe-form',
   submitButtonText: 'Add recipe',
-  name: '',
-  information: '',
-  ingredients: [],
-  instructions: []
+  fetchRecipe: false,
+  recipeId: -1,
 }
 
 RecipeForm.propTypes = {
-  onSuccess: PropTypes.func,
+  onSuccess: PropTypes.func.isRequired,
+  onDelete: PropTypes.func,
   title: PropTypes.oneOf(['Add Recipe', 'Edit Recipe']).isRequired,
   form: PropTypes.oneOf(['add-recipe-form', 'edit-recipe-form']).isRequired,
   submitButtonText: PropTypes.oneOf(['Add recipe', 'Make changes']).isRequired,
-  name: PropTypes.string,
-  information: PropTypes.string,
-  ingredients: PropTypes.array,
-  instructions: PropTypes.array
+  fetchRecipe: PropTypes.bool.isRequired,
+  recipeId: PropTypes.number
 }
 
 export default withRouter(RecipeForm);
