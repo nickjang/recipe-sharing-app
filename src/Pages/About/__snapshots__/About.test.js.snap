@@ -35,7 +35,7 @@ exports[`About component renders About by default 1`] = `
   <p
     className="note"
   >
-    With the demo account, you won't able to do these things, but you can see what it's like to have an account and view differences in options available.
+    With the demo account, you won't able to do these things, but you can see what it's like to have an account and view differences in features available.
   </p>
   <p
     className="note"

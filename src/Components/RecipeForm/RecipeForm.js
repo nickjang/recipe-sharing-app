@@ -174,7 +174,7 @@ class RecipeForm extends Component {
           {/* Delete recipe */
             form === 'edit-recipe-form' &&
             <button
-              className='rs-btn rs-btn-light mt-1 ml-auto'
+              className='rs-btn rs-btn-reset mt-1 ml-auto'
               type='reset'
               form={form}
               onClick={(e) => { this.handleDelete(e) }}
@@ -253,7 +253,7 @@ class RecipeForm extends Component {
           </button>
           {/* Submit */}
           <button
-            className='rs-btn rs-btn-light mt-3 ml-auto mb-1 break'
+            className='rs-btn rs-btn-success mt-3 ml-auto mb-1 break'
             type='submit'
             form={form}
             onClick={(e) => { this.handleSubmit(e) }}
