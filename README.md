@@ -17,9 +17,9 @@ This application was written using React, Node.js, and PostgreSQL.
 
 ## Demo
 
-<img src="./src/images/recipe-sharing.gif" align="middle" alt="A live demo of using the recipe sharing application from the landing page, to signing up, to viewing the recipes, adding a recipe, viewing your own recipes, editting a recipe, seeing it in the public recipes, deleting the recipe." width="575">
+<img src="./src/assets/images/recipe-sharing.gif" align="middle" alt="A live demo of using the recipe sharing application from getting to landing page, to viewing the recipes, adding a recipe, viewing your own recipes, and editting a recipe." width="575">
 
-A demo using an account → public recipes → add recipes → account's recipes -> edit recipe -> public recipes with new recipe -> delete recipe.
+A demo using an account → recipes → add recipes → view account's recipes → edit recipe → delete recipe.
 
 ## Share recipes
 
