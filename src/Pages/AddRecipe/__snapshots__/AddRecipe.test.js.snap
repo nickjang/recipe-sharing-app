@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddRecipe component renders AddRecipe by default 1`] = `
+<Fragment>
+  <withRouter(RecipeForm)
+    fetchRecipe={false}
+    form="add-recipe-form"
+    onSuccess={[Function]}
+    submitButtonText="Add recipe"
+    title="Add Recipe"
+  />
+</Fragment>
+`;

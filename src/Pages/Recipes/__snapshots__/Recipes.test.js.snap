@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recipes component renders Recipes by default 1`] = `
+<InfiniteScroll
+  className="recipe-card-list"
+  dataLength={0}
+  endMessage={
+    <p
+      className="note text-center"
+    >
+      End of recipes
+    </p>
+  }
+  hasMore={true}
+  loader={
+    <span>
+      Loading...
+    </span>
+  }
+  next={[Function]}
+>
+   
+</InfiniteScroll>
+`;

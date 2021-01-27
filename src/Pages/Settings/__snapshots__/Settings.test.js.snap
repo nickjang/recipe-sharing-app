@@ -2,7 +2,7 @@
 
 exports[`Settings component renders Settings by default 1`] = `
 <article
-  className="account-form settings"
+  className="form settings"
 >
   <h2
     className="rs-title"

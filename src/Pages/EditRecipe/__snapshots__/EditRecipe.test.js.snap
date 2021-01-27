@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditRecipe component renders EditRecipe by default 1`] = `
+<Fragment>
+  <withRouter(RecipeForm)
+    fetchRecipe={true}
+    form="edit-recipe-form"
+    onDelete={[Function]}
+    onSuccess={[Function]}
+    recipeId={-1}
+    submitButtonText="Make changes"
+    title="Edit Recipe"
+  />
+</Fragment>
+`;

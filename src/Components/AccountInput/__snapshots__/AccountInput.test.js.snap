@@ -17,7 +17,6 @@ exports[`AccountInput component renders AccountInput by default 1`] = `
       :
       <span
         className="hint"
-        htmlFor=""
       />
     </label>
     <input

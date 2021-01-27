@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserRecipes component renders UserRecipes by default 1`] = `
+<Fragment>
+  <Parallax
+    bgClassName="react-parallax-bgimage"
+    bgImage="https://preppykitchen.com/wp-content/uploads/2019/06/Ultimate-Chocolate-Cake-feature-1200.jpg"
+    bgImageAlt="the cat"
+    blur={0}
+    className=""
+    contentClassName=""
+    disabled={false}
+    strength={200}
+  >
+    <h2
+      className="rs-title author-name"
+    />
+  </Parallax>
+  <InfiniteScroll
+    className="recipe-card-list"
+    dataLength={0}
+    endMessage={
+      <p
+        className="note text-center"
+      >
+        End of recipes
+      </p>
+    }
+    hasMore={true}
+    loader={
+      <span>
+        Loading...
+      </span>
+    }
+    next={[Function]}
+  >
+     
+  </InfiniteScroll>
+</Fragment>
+`;

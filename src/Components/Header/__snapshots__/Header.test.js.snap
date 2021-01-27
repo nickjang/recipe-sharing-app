@@ -4,16 +4,23 @@ exports[`Header component renders Header by default 1`] = `
 <header>
   <h1>
     <Link
-      to="/overview"
+      to="/"
     >
-      Logger
+      Recipe Sharing
     </Link>
   </h1>
   <nav>
-    <ul>
-      <div
-        className="right-link-container"
-      >
+    <div
+      className="right-link-container"
+    >
+      <ul>
+        <li>
+          <NavLink
+            to="/about"
+          >
+            Getting Started
+          </NavLink>
+        </li>
         <li>
           <NavLink
             to="/sign-up"
@@ -28,8 +35,8 @@ exports[`Header component renders Header by default 1`] = `
             Log in
           </NavLink>
         </li>
-      </div>
-    </ul>
+      </ul>
+    </div>
   </nav>
 </header>
 `;

@@ -7,18 +7,26 @@ exports[`App component renders App by default 1`] = `
     className="App"
   >
     <Switch>
-      <PrivateRoute
+      <Route
         component={[Function]}
         exact={true}
         path="/"
       />
-      <PublicOnlyRoute
+      <Route
         component={[Function]}
-        path="/overview"
+        path="/about"
       />
-      <PublicOnlyRoute
+      <PrivateRoute
         component={[Function]}
-        path="/getting-started"
+        path="/recipes/add"
+      />
+      <PrivateRoute
+        component={[Function]}
+        path="/recipes/:recipeId/edit"
+      />
+      <Route
+        component={[Function]}
+        path="/recipes/:recipeId"
       />
       <PublicOnlyRoute
         component={[Function]}
@@ -30,7 +38,7 @@ exports[`App component renders App by default 1`] = `
       />
       <PrivateRoute
         component={[Function]}
-        path="/view"
+        path="/users/:userId/recipes"
       />
       <PrivateRoute
         component={[Function]}
