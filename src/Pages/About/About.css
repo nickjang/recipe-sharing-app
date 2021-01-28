@@ -1,8 +1,9 @@
 .about h2 {
   text-align: center;
+  margin-left: 0;
 }
 
-.about {
+.about-body {
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -12,10 +13,17 @@
   align-items: center;
 }
 
-.about p {
+.about-body p {
   font-family: var(--note-font);
 }
 
-.about span {
+.about-body span {
   display: block;
+}
+
+@media all and (min-width: 55rem) {
+  .about h2 {
+    text-align: left;
+    margin-left: auto;
+  }
 }

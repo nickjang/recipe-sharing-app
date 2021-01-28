@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserRecipes component renders UserRecipes by default 1`] = `
-<Fragment>
+<article>
   <Parallax
     bgClassName="react-parallax-bgimage"
     bgImage="cupcakes.jpg"
@@ -13,7 +13,7 @@ exports[`UserRecipes component renders UserRecipes by default 1`] = `
     strength={200}
   >
     <h2
-      className="rs-title author-name"
+      className="page-title rs-title"
     />
   </Parallax>
   <InfiniteScroll
@@ -36,5 +36,5 @@ exports[`UserRecipes component renders UserRecipes by default 1`] = `
   >
      
   </InfiniteScroll>
-</Fragment>
+</article>
 `;

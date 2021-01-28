@@ -11,15 +11,16 @@
 }
 
 .recipe-list li {
-  border-left: 5px solid var(--color-blue);
+  border-left: 5px solid var(--color-light-brown);
   background-color: #f1f1f1;
   list-style-type: none;
   margin-top: 1rem;
   padding: 10px 20px;
 }
 
-ol input {
-  width: 90%
+.recipe-form ul input,
+.recipe-form ol input {
+  width: 90%;
 }
 
 .recipe-form form > fieldset:first-of-type {
@@ -27,5 +28,48 @@ ol input {
 }
 
 input#name {
-  width: 100%
+  width: 95%;
+}
+
+div.recipe-form {
+  width: 95%;
+  max-width: 38rem;
+}
+
+@media all and (min-width: 345px) {
+  .recipe-form ul input {
+    width: 9rem;
+  }
+
+  .recipe-form ol input {
+    width: 83%;
+  }
+}
+
+@media all and (min-width: 400px) {
+  .recipe-form ul input {
+    width: 12rem;
+  }
+}
+
+@media all and (min-width: 450px) {
+  .recipe-form ul input {
+    width: 71%;
+  }
+}
+
+@media all and (min-width: 500px) {
+  .recipe-form ul input {
+    width: 74%;
+  }
+
+  .recipe-form ol input {
+    width: 90%;
+  }
+}
+
+@media all and (min-width: 700px) {
+  .recipe-form ul input {
+    width: 81%;
+  }
 }

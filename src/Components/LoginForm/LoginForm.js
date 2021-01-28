@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Parallax } from 'react-parallax';
 import AccountInput from '../AccountInput/AccountInput';
-import AuthApiService from '../../services/auth-api-service'
+import AuthApiService from '../../services/auth-api-service';
+import caramelImg from '../../assets/images/caramel.jpg';
 import './LoginForm.css';
 
 class LoginForm extends Component {
@@ -52,8 +54,8 @@ class LoginForm extends Component {
       password: this.state.password.value,
     })
       .then(({ id }) => {
-        if (id == null) 
-          return this.setState({error: 'Did not get back user ID'});
+        if (id == null)
+          return this.setState({ error: 'Did not get back user ID' });
         this.setState(
           {
             email: {
@@ -82,40 +84,51 @@ class LoginForm extends Component {
     const title = 'Log In';
     const form = 'login-form';
     return (
-      <article className='form'>
-        <h2 className='rs-title'>{title}</h2>
-        <output
-          form={form}
-          className={`form-status ${this.state.error ? 'fail-status' : ''}`}
-        > {this.state.error || (this.state.loading && 'Loading...')}
-        </output>
-        <form action='' id={form}>
-          <AccountInput
-            form='account-settings-form'
-            id='email'
-            type='email'
-            inputRef={el => this.emailRef = el}
-            touched={this.state.email.touched}
-            validate={this.validateEmail}
-            update={this.updateEmail}
-            hint={<sup>*</sup>} />
-          <AccountInput
+      <article>
+        <Parallax
+          blur={0}
+          bgImage={caramelImg}
+          bgImageAlt="Caramel oozing out of stacked macarons"
+          className='misc-page-title'
+          bgClassName='misc-page-img'
+          strength={200}
+        >
+          <h2 className='page-title rs-title'>{title}</h2>
+        </Parallax>
+        <div className='form'>
+          <output
             form={form}
-            id='password'
-            type='password'
-            touched={this.state.password.touched}
-            validate={this.validatePassword}
-            update={this.updatePassword}
-            hint={<sup>*</sup>} />
-          <button
-            className='rs-btn rs-btn-light mt-1'
-            type='submit'
-            form={form}
-            onClick={(e) => { this.handleSubmit(e) }}
-            disabled={this.validateEmail() || this.validatePassword()}
-          > {title}
-          </button>
-        </form>
+            className={`form-status ${this.state.error ? 'fail-status' : ''}`}
+          > {this.state.error || (this.state.loading && 'Loading...')}
+          </output>
+          <form action='' id={form}>
+            <AccountInput
+              form='account-settings-form'
+              id='email'
+              type='email'
+              inputRef={el => this.emailRef = el}
+              touched={this.state.email.touched}
+              validate={this.validateEmail}
+              update={this.updateEmail}
+              hint={<sup>*</sup>} />
+            <AccountInput
+              form={form}
+              id='password'
+              type='password'
+              touched={this.state.password.touched}
+              validate={this.validatePassword}
+              update={this.updatePassword}
+              hint={<sup>*</sup>} />
+            <button
+              className='rs-btn rs-btn-light mt-1'
+              type='submit'
+              form={form}
+              onClick={(e) => { this.handleSubmit(e) }}
+              disabled={this.validateEmail() || this.validatePassword()}
+            > {title}
+            </button>
+          </form>
+        </div>
       </article>
     );
   }

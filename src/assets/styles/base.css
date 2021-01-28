@@ -1,14 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Do+Hyeon&family=Abel&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap');
 
 :root {
   --color-black: black;
+  --color-light-brown: #dfb28b;
   --color-white: white;
-  --color-blue: rgb(2, 52, 110);
-  --title-font: "Lora", serif;
-  --timestamp-font: "Abel", sans-serif;
-  --body-font: "Lora", serif;
-  --action-font: "Abel", sans-serif;
-  --note-font: "Abel", sans-serif;
+  --color-dark-brown: #331a08;
+  --title-font: 'Roboto', sans-serif;
+  --timestamp-font: 'Roboto', sans-serif;
+  --body-font: 'Roboto Slab', serif;
+  --action-font: 'Roboto', sans-serif;
+  --note-font: 'Roboto Slab', serif;
   --button-drop-shadow: 4px 4px 8px -3px rgba(0, 0, 0, 0.2),
     3px 3px 2px -2px rgba(0, 0, 0, 0.15);
 }
@@ -24,7 +25,7 @@
 }
 
 .rs-title {
-  color: var(--color-blue);
+  color: var(--color-dark-brown);
   font-family: var(--title-font);
   font-size: 2rem;
 }
@@ -42,6 +43,7 @@
 input {
   font-size: 1rem;
   padding: 0.5rem;
+  font-family: var(--body-font);
 }
 
 input,
@@ -50,18 +52,23 @@ button {
   -moz-appearance: none;
 }
 
+button {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 select {
   -webkit-appearance: menulist;
   -moz-appearance: menulist;
 }
 
+textarea:focus,
 input:focus {
-  border: 1px solid var(--color-black);
+  border: 2px solid var(--color-light-brown);
 }
 
 .rs-card {
   background: var(--color-white);
-  border: 1px solid lightgray;
+  border: 1px solid var(--color-dark-brown);
   padding: 2rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -83,22 +90,23 @@ input:focus {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 10px;
-  font-family: "Abel", sans-serif;
+  font-family: var(--action-font);
 }
 
 .rs-btn-light {
-  border: 1px solid var(--color-black);
-  background: var(--color-white);
-  color: var(--color-black);
+  border: none;
+  background: var(--color-dark-brown);
+  color: var(--color-white);
 }
 
 .rs-btn-light:disabled {
-  border-color: gray;
-  color: gray;
+  background-color: gray;
+  color: white;
 }
 
 .rs-btn-light:hover:enabled {
-  box-shadow: var(--button-drop-shadow);
+  background-color: var(--color-light-brown);
+  color: var(--color-dark-brown);
 }
 
 .rs-btn-success {
@@ -108,23 +116,27 @@ input:focus {
 
 .rs-btn-success:disabled {
   background: rgb(117, 143, 117);
+  color: lightgray;
 }
 
 .rs-btn-success:hover:enabled {
-  box-shadow: var(--button-drop-shadow);
+  background: rgb(8, 200, 8);
+  color: var(--color-black);
 }
 
 .rs-btn-reset {
-  background: red;
+  background: rgb(207, 33, 44);
+  color: var(--color-white)
 }
 
 .rs-btn-reset:disabled {
-  color: var(--color-white);
   background: rgb(153, 119, 119);
+  color: lightgray;
 }
 
 .rs-btn-reset:hover:enabled {
-  box-shadow: var(--button-drop-shadow);
+  background: rgb(255, 0, 0);
+  color: var(--color-black);
 }
 
 .recipe-card-list {
@@ -165,7 +177,7 @@ input:focus {
 
 .recipe-card .timestamp {
   font-family: var(--timestamp-font);
-  color: var(--color-blue);
+  color: var(--color-dark-brown);
 }
 
 a.rs-sub-title:link {
@@ -177,11 +189,32 @@ a.rs-sub-title:visited {
 }
 
 a.rs-sub-title:hover {
-  color: darkgray;
+  transition: color 0.2s ease;
+  color: var(--color-light-brown);
 }
 
 a.rs-sub-title:active {
-  color: rgb(87, 87, 87);
+  color:var(--color-dark-brown);
+}
+
+.page-title {
+  text-align: center;
+  color: var(--color-white);
+}
+
+@media all and (min-width: 800px) {
+  .page-title {
+    text-align: left;
+    margin-left: 4rem;
+  }
+}
+
+@media all and (min-width: 55rem) {
+  .page-title {
+    max-width: 47rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media all and (min-width: 440px) {
@@ -197,6 +230,13 @@ a.rs-sub-title:active {
   }
 }
 
+.misc-page-title {
+  background-color: black;
+}
+
+.misc-page-img {
+  opacity: 0.7;
+}
 
 .form-status,
 .note,
@@ -256,7 +296,7 @@ a.rs-sub-title:active {
 }
 
 .mr-tenth {
-  margin-right: .1rem;
+  margin-right: 0.1rem;
 }
 
 .ml-1 {

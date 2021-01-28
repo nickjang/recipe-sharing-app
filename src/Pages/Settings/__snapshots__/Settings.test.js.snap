@@ -1,98 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Settings component renders Settings by default 1`] = `
-<article
-  className="form settings"
->
-  <h2
-    className="rs-title"
+<article>
+  <Parallax
+    bgClassName="misc-page-img"
+    bgImage="caramel.jpg"
+    bgImageAlt="Caramel oozing out of stacked macarons"
+    blur={0}
+    className="misc-page-title"
+    contentClassName=""
+    disabled={false}
+    strength={200}
   >
-    Settings
-  </h2>
-  <section>
-    <h3
-      className="rs-title"
+    <h2
+      className="page-title rs-title"
     >
-      Account Settings
-    </h3>
-    <output
-      className="form-status "
-      form="account-settings-form"
-    >
-       
-      
-      
-    </output>
-    <form
-      id="account-settings-form"
-    >
-      <AccountInput
-        form="account-settings-form"
-        hint={
-          <sup>
-            *
-          </sup>
-        }
-        id="email"
-        inputRef={null}
-        touched={false}
-        type="email"
-        update={[Function]}
-        validate={[Function]}
-      />
-      <AccountInput
-        form="account-settings-form"
-        hint={
-          <sup>
-            *
-          </sup>
-        }
-        id="password"
-        inputRef={null}
-        touched={false}
-        type="password"
-        update={[Function]}
-        validate={[Function]}
-      />
-      <AccountInput
-        form="account-settings-form"
-        hint=""
-        id="new-email"
-        inputRef={null}
-        touched={false}
-        type="email"
-        update={[Function]}
-        validate={[Function]}
-      />
-      <AccountInput
-        form="account-settings-form"
-        hint=""
-        id="new-password"
-        inputRef={null}
-        touched={false}
-        type="password"
-        update={[Function]}
-        validate={[Function]}
-      />
-      <button
-        className="rs-btn rs-btn-success mt-1 mr-1"
-        disabled="Email cannot be empty."
-        form="account-settings-form"
-        onClick={[Function]}
-        type="submit"
+      Settings
+    </h2>
+  </Parallax>
+  <div
+    className="form settings"
+  >
+    <section>
+      <h3
+        className="rs-title"
       >
-         Submit
-      </button>
-      <button
-        className="rs-btn rs-btn-reset"
-        disabled="Email cannot be empty."
+        Account Settings
+      </h3>
+      <output
+        className="form-status "
         form="account-settings-form"
-        onClick={[Function]}
-        type="reset"
       >
-         Delete Account
-      </button>
-    </form>
-  </section>
+         
+        
+      
+      </output>
+      <form
+        id="account-settings-form"
+      >
+        <AccountInput
+          form="account-settings-form"
+          hint={
+            <sup>
+              *
+            </sup>
+          }
+          id="email"
+          inputRef={null}
+          touched={false}
+          type="email"
+          update={[Function]}
+          validate={[Function]}
+        />
+        <AccountInput
+          form="account-settings-form"
+          hint={
+            <sup>
+              *
+            </sup>
+          }
+          id="password"
+          inputRef={null}
+          touched={false}
+          type="password"
+          update={[Function]}
+          validate={[Function]}
+        />
+        <AccountInput
+          form="account-settings-form"
+          hint=""
+          id="new-email"
+          inputRef={null}
+          touched={false}
+          type="email"
+          update={[Function]}
+          validate={[Function]}
+        />
+        <AccountInput
+          form="account-settings-form"
+          hint=""
+          id="new-password"
+          inputRef={null}
+          touched={false}
+          type="password"
+          update={[Function]}
+          validate={[Function]}
+        />
+        <button
+          className="rs-btn rs-btn-success mt-1 mr-1"
+          disabled="Email cannot be empty."
+          form="account-settings-form"
+          onClick={[Function]}
+          type="submit"
+        >
+           Submit
+        </button>
+        <button
+          className="rs-btn rs-btn-reset"
+          disabled="Email cannot be empty."
+          form="account-settings-form"
+          onClick={[Function]}
+          type="reset"
+        >
+           Delete Account
+        </button>
+      </form>
+    </section>
+  </div>
 </article>
 `;

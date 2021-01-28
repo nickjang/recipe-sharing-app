@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Parallax } from 'react-parallax';
+import RecipeSharingApiService from '../../services/recipe-sharing-api-service';
+import cupcakesImg from '../../assets/images/cupcakes.jpg';
 import './Recipes.css';
 
 class Recipes extends Component {
@@ -90,17 +92,25 @@ class Recipes extends Component {
     const { recipes, hasMore, error } = this.state;
 
     return (
-      <InfiniteScroll
-        dataLength={recipes.length}
-        next={this.fetchRecipes}
-        hasMore={hasMore}
-        loader={<span>Loading...</span>}
-        endMessage={error
-          ? <p className='error text-center'>{error}</p>
-          : <p className='note text-center'>End of recipes</p>}
-        className='recipe-card-list'
-      > {this.generateGroupedCards(recipes)}
-      </InfiniteScroll >
+      <article>
+        <Parallax
+          blur={0}
+          bgImage={cupcakesImg}
+          bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
+          className='recipes-page-title'
+          strength={200} />
+        <InfiniteScroll
+          dataLength={recipes.length}
+          next={this.fetchRecipes}
+          hasMore={hasMore}
+          loader={<span>Loading...</span>}
+          endMessage={error
+            ? <p className='error text-center'>{error}</p>
+            : <p className='note text-center'>End of recipes</p>}
+          className='recipe-card-list'
+        > {this.generateGroupedCards(recipes)}
+        </InfiniteScroll>
+      </article>
     );
   }
 }

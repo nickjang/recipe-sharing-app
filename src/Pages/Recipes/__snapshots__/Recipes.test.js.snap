@@ -1,24 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Recipes component renders Recipes by default 1`] = `
-<InfiniteScroll
-  className="recipe-card-list"
-  dataLength={0}
-  endMessage={
-    <p
-      className="note text-center"
-    >
-      End of recipes
-    </p>
-  }
-  hasMore={true}
-  loader={
-    <span>
-      Loading...
-    </span>
-  }
-  next={[Function]}
->
-   
-</InfiniteScroll>
+<article>
+  <Parallax
+    bgClassName="react-parallax-bgimage"
+    bgImage="cupcakes.jpg"
+    bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
+    blur={0}
+    className="recipes-page-title"
+    contentClassName=""
+    disabled={false}
+    strength={200}
+  />
+  <InfiniteScroll
+    className="recipe-card-list"
+    dataLength={0}
+    endMessage={
+      <p
+        className="note text-center"
+      >
+        End of recipes
+      </p>
+    }
+    hasMore={true}
+    loader={
+      <span>
+        Loading...
+      </span>
+    }
+    next={[Function]}
+  >
+     
+  </InfiniteScroll>
+</article>
 `;

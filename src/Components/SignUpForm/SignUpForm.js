@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Parallax } from 'react-parallax';
 import AccountInput from '../AccountInput/AccountInput';
 import AuthApiService from '../../services/auth-api-service'
+import caramelImg from '../../assets/images/caramel.jpg';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -104,7 +106,7 @@ class SignUpForm extends Component {
           loading: false
         }, () => this.props.onSuccess())
       })
-      .catch(({error}) => {
+      .catch(({ error }) => {
         this.setState({ error, loading: false })
       })
   }
@@ -117,59 +119,70 @@ class SignUpForm extends Component {
     const title = 'Sign Up';
     const form = 'sign-up-form';
     return (
-      <article className='form'>
-        <h2 className='rs-title'>Welcome!</h2>
-        <h3 className='rs-title'>{title}</h3>
-        <output
-          form={form}
-          className={`form-status ${this.state.error ? 'fail-status' : ''}`}
-        > {this.state.error || (this.state.loading && 'Loading...')}
-        </output>
-        <form action='' id={form}>
-          <AccountInput
+      <article>
+        <Parallax
+          blur={0}
+          bgImage={caramelImg}
+          bgImageAlt="Caramel oozing out of stacked macarons"
+          className='misc-page-title'
+          bgClassName='misc-page-img'
+          strength={200}
+        >
+          <h2 className='page-title rs-title'>{title}</h2>
+        </Parallax>
+        <div className='form'>
+          <h3 className='rs-title'>{title}</h3>
+          <output
             form={form}
-            id='full_name'
-            type='text'
-            touched={this.state.full_name.touched}
-            validate={this.validateFullName}
-            update={this.updateFullName}
-            hint={<sup>*</sup>} />
-          <AccountInput
-            form={form}
-            id='nickname'
-            type='text'
-            touched={this.state.nickname.touched}
-            validate={() => { }}
-            update={this.updateNickname} />
-          <AccountInput
-            form='account-settings-form'
-            id='email'
-            type='email'
-            inputRef={el => this.emailRef = el}
-            touched={this.state.email.touched}
-            validate={this.validateEmail}
-            update={this.updateEmail}
-            hint={<sup>*</sup>} />
-          <AccountInput
-            form={form}
-            id='password'
-            type='password'
-            touched={this.state.password.touched}
-            validate={this.validatePassword}
-            update={this.updatePassword}
-            hint={<sup>*</sup>} />
-          <button
-            className='rs-btn rs-btn-light mt-1'
-            type='submit'
-            form={form}
-            onClick={(e) => { this.handleSubmit(e) }}
-            disabled={
-              this.validateEmail() ||
-              this.validatePassword() ||
-              this.validateFullName()}
-          > {title}
-          </button>
-        </form>
+            className={`form-status ${this.state.error ? 'fail-status' : ''}`}
+          > {this.state.error || (this.state.loading && 'Loading...')}
+          </output>
+          <form action='' id={form}>
+            <AccountInput
+              form={form}
+              id='full_name'
+              type='text'
+              touched={this.state.full_name.touched}
+              validate={this.validateFullName}
+              update={this.updateFullName}
+              hint={<sup>*</sup>} />
+            <AccountInput
+              form={form}
+              id='nickname'
+              type='text'
+              touched={this.state.nickname.touched}
+              validate={() => { }}
+              update={this.updateNickname} />
+            <AccountInput
+              form='account-settings-form'
+              id='email'
+              type='email'
+              inputRef={el => this.emailRef = el}
+              touched={this.state.email.touched}
+              validate={this.validateEmail}
+              update={this.updateEmail}
+              hint={<sup>*</sup>} />
+            <AccountInput
+              form={form}
+              id='password'
+              type='password'
+              touched={this.state.password.touched}
+              validate={this.validatePassword}
+              update={this.updatePassword}
+              hint={<sup>*</sup>} />
+            <button
+              className='rs-btn rs-btn-light mt-1'
+              type='submit'
+              form={form}
+              onClick={(e) => { this.handleSubmit(e) }}
+              disabled={
+                this.validateEmail() ||
+                this.validatePassword() ||
+                this.validateFullName()}
+            > {title}
+            </button>
+          </form>
+        </div>
       </article>
     );
   }

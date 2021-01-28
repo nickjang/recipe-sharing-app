@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Parallax } from 'react-parallax';
 import AccountInput from '../../Components/AccountInput/AccountInput';
 import AuthApiService from '../../services/auth-api-service';
+import caramelImg from '../../assets/images/caramel.jpg';
 import './Settings.css';
 
 class Settings extends Component {
@@ -139,67 +141,78 @@ class Settings extends Component {
       ${this.state.password.updated ? 'Updated password.' : ''}`
     );
     return (
-      <article className='form settings'>
-        <h2 className='rs-title'>Settings</h2>
-        <section>
-          <h3 className='rs-title'>Account Settings</h3>
-          <output
-            form='account-settings-form'
-            className={`form-status ${this.state.error ? 'fail-status' : ''}`}
-          > {this.state.error || updateMessage}
-          </output>
-          <form id='account-settings-form'>
-            <AccountInput
+      <article>
+        <Parallax
+          blur={0}
+          bgImage={caramelImg}
+          bgImageAlt="Caramel oozing out of stacked macarons"
+          className='misc-page-title'
+          bgClassName='misc-page-img'
+          strength={200}
+        >
+          <h2 className='page-title rs-title'>Settings</h2>
+        </Parallax>
+        <div className='form settings'>
+          <section>
+            <h3 className='rs-title'>Account Settings</h3>
+            <output
               form='account-settings-form'
-              id='email'
-              type='email'
-              touched={this.state.email.touched}
-              ref={el => this.emailRef = el}
-              validate={() => this.validateEmail(true)}
-              update={this.updateEmail}
-              hint={<sup>*</sup>} />
-            <AccountInput
-              form='account-settings-form'
-              id='password'
-              type='password'
-              touched={this.state.password.touched}
-              validate={() => this.validatePassword(true)}
-              update={this.updatePassword}
-              hint={<sup>*</sup>} />
-            <AccountInput
-              form='account-settings-form'
-              id='new-email'
-              type='email'
-              touched={this.state.newEmail.touched}
-              validate={() => this.validateEmail(false)}
-              update={this.updateNewEmail} />
-            <AccountInput
-              form='account-settings-form'
-              id='new-password'
-              type='password'
-              touched={this.state.newPassword.touched}
-              validate={() => this.validatePassword(false)}
-              update={this.updateNewPassword} />
-            <button
-              className='rs-btn rs-btn-success mt-1 mr-1'
-              type='submit'
-              form='account-settings-form'
-              onClick={(e) => { this.handleSubmit(e) }}
-              disabled={this.validateEmail(true) ||
-                this.validatePassword(true) ||
-                (this.validateEmail(false) && this.validatePassword(false))}
-            > Submit
+              className={`form-status ${this.state.error ? 'fail-status' : ''}`}
+            > {this.state.error || updateMessage}
+            </output>
+            <form id='account-settings-form'>
+              <AccountInput
+                form='account-settings-form'
+                id='email'
+                type='email'
+                touched={this.state.email.touched}
+                ref={el => this.emailRef = el}
+                validate={() => this.validateEmail(true)}
+                update={this.updateEmail}
+                hint={<sup>*</sup>} />
+              <AccountInput
+                form='account-settings-form'
+                id='password'
+                type='password'
+                touched={this.state.password.touched}
+                validate={() => this.validatePassword(true)}
+                update={this.updatePassword}
+                hint={<sup>*</sup>} />
+              <AccountInput
+                form='account-settings-form'
+                id='new-email'
+                type='email'
+                touched={this.state.newEmail.touched}
+                validate={() => this.validateEmail(false)}
+                update={this.updateNewEmail} />
+              <AccountInput
+                form='account-settings-form'
+                id='new-password'
+                type='password'
+                touched={this.state.newPassword.touched}
+                validate={() => this.validatePassword(false)}
+                update={this.updateNewPassword} />
+              <button
+                className='rs-btn rs-btn-success mt-1 mr-1'
+                type='submit'
+                form='account-settings-form'
+                onClick={(e) => { this.handleSubmit(e) }}
+                disabled={this.validateEmail(true) ||
+                  this.validatePassword(true) ||
+                  (this.validateEmail(false) && this.validatePassword(false))}
+              > Submit
             </button>
-            <button
-              className='rs-btn rs-btn-reset'
-              type='reset'
-              form='account-settings-form'
-              onClick={(e) => { this.handleDeleteAccount(e) }}
-              disabled={this.validateEmail(true) || this.validatePassword(true)}
-            > Delete Account
+              <button
+                className='rs-btn rs-btn-reset'
+                type='reset'
+                form='account-settings-form'
+                onClick={(e) => { this.handleDeleteAccount(e) }}
+                disabled={this.validateEmail(true) || this.validatePassword(true)}
+              > Delete Account
             </button>
-          </form>
-        </section>
+            </form>
+          </section>
+        </div>
       </article>
     );
   }

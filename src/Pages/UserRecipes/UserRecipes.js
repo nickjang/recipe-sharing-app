@@ -100,14 +100,14 @@ class UserRecipes extends Component {
     const { recipes, hasMore, author, error } = this.state;
 
     return (
-      <>
+      <article>
         <Parallax
           blur={0}
           bgImage={cupcakesImg}
           bgImageAlt="Chocolate cupcakes stacked with chocolate powder sprinkling on top"
           strength={200}
         >
-          <h2 className='rs-title author-name'>{author}</h2>
+          <h2 className='page-title rs-title'>{author}</h2>
         </Parallax>
         <InfiniteScroll
           dataLength={recipes.length}
@@ -120,7 +120,7 @@ class UserRecipes extends Component {
           className='recipe-card-list'
         > {this.generateGroupedCards(recipes)}
         </InfiniteScroll >
-      </>
+      </article>
     );
   }
 }

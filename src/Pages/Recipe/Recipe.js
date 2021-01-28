@@ -45,20 +45,20 @@ class Recipe extends Component {
           strength={200}
         >
           <div className='recipe-name'>
-            <h2 className='rs-title mr-1'>Recipe:</h2>
+            <h2 className='rs-title'>Recipe:</h2>
             <h3 className='rs-title'>{name}</h3>
           </div>
         </Parallax>
         <p className='recipe-author note'>{author.full_name && `By ${author.full_name}`}</p>
         <p className='recipe-information rs-body'>{information}</p>
         <h3 className='recipe-ingredients rs-sub-title w-fit mr-auto'>Ingredients:</h3>
-        <ul className='recipe-ingredients recipe-list note'>
+        <ul className='recipe-ingredients recipe-list rs-body'>
           {ingredients.map((ingredient, index) =>
             <li key={index + '-ingredient'}>{ingredient.measurement + ' ' + ingredient.ingredient}</li>
           )}
         </ul>
         <h3 className='recipe-instructions rs-sub-title w-fit mr-auto'>Instructions:</h3>
-        <ul className='recipe-instructions recipe-list note'>
+        <ul className='recipe-instructions recipe-list rs-body'>
           {instructions.map((instruction, index) =>
             <li key={index + '-instruction'}>{index + 1}. {instruction}</li>
           )}

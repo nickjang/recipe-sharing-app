@@ -18,7 +18,7 @@ exports[`Recipe component renders Recipe by default 1`] = `
       className="recipe-name"
     >
       <h2
-        className="rs-title mr-1"
+        className="rs-title"
       >
         Recipe:
       </h2>
@@ -39,7 +39,7 @@ exports[`Recipe component renders Recipe by default 1`] = `
     Ingredients:
   </h3>
   <ul
-    className="recipe-ingredients recipe-list note"
+    className="recipe-ingredients recipe-list rs-body"
   />
   <h3
     className="recipe-instructions rs-sub-title w-fit mr-auto"
@@ -47,7 +47,7 @@ exports[`Recipe component renders Recipe by default 1`] = `
     Instructions:
   </h3>
   <ul
-    className="recipe-instructions recipe-list note"
+    className="recipe-instructions recipe-list rs-body"
   />
 </article>
 `;
